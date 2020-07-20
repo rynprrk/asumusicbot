@@ -21,6 +21,7 @@ public class nowPlayingCommand extends Command {
     }
 
     protected void execute(CommandEvent event) {
+        Command command = new nowPlayingCommand();
         PlayerManager playerManager = PlayerManager.getInstance();
         GuildMusicManager musicManager = playerManager.getGuildMusicManager(event.getGuild());
         AudioPlayer player = musicManager.player;
@@ -32,6 +33,6 @@ public class nowPlayingCommand extends Command {
 
         AudioTrackInfo info = player.getPlayingTrack().getInfo();
         EmbedHandler.sendEmbedMessage(event, Color.GREEN, "Now Playing...", String.format("[%s](%s)", info.title, info.uri));
-
+        EmbedHandler.sendLogMessage(event, command);
     }
 }

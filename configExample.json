@@ -1,0 +1,10 @@
+{
+    "token": "Enter Discord API bot token here",
+    "youtubekey": "Enter YouTube API token here",
+    "botOwnerId": "Enter Bot Owner User ID",
+    "supporterId": "Enter Supporter Role ID",
+    "prefix": "%%",
+    "helpword": "help",
+    "activityMessage": "The text that comes after playing...",
+    "logChannelId": "Channel ID of the log channel"
+  }

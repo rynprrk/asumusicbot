@@ -24,6 +24,7 @@ public class queueCommand extends Command {
     }
 
     protected void execute(CommandEvent event) {
+        Command command = new queueCommand();
         PlayerManager playerManager = PlayerManager.getInstance();
         GuildMusicManager musicManager = playerManager.getGuildMusicManager(event.getGuild());
         BlockingQueue<AudioTrack> queue = musicManager.scheduler.getQueue();
@@ -48,5 +49,6 @@ public class queueCommand extends Command {
         }
 
         event.getTextChannel().sendMessage(builder.build()).queue();
+        EmbedHandler.sendLogMessage(event, command);
     }
 }

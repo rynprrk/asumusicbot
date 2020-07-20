@@ -42,7 +42,7 @@ public class playCommand extends Command {
     }
 
     protected void execute(CommandEvent event) {
-
+        Command command = new playCommand();
         PlayerManager manager = PlayerManager.getInstance();
         AudioManager audioManager = event.getGuild().getAudioManager();
         VoiceChannel voiceChannel = event.getMember().getVoiceState().getChannel();
@@ -85,6 +85,7 @@ public class playCommand extends Command {
 
         manager.loadAndPlay(event.getTextChannel(), input);
         manager.getGuildMusicManager(event.getGuild()).player.setVolume(50);
+        EmbedHandler.sendLogMessage(event, command, event.getArgs());
     }
 
 

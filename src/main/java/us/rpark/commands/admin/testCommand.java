@@ -13,9 +13,11 @@ public class testCommand extends Command {
         super.name = "test";
         super.help = "This is a test command.";
         super.arguments = "";
+        super.ownerCommand = true;
     }
 
     protected void execute(CommandEvent event) {
+        Command command = new testCommand();
 
         if (!checkPermission.isAdmin(event)) {
             EmbedHandler.sendErrorMessage(event, "You must be an **Admin** to do this command!");
@@ -23,6 +25,6 @@ public class testCommand extends Command {
         }
 
         EmbedHandler.sendEmbedMessage(event, Color.ORANGE, "Embed Test", event.getArgs());
-
+        EmbedHandler.sendLogMessage(event, command);
     }
 }

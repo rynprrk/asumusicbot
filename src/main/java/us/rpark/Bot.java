@@ -8,11 +8,11 @@ import javax.security.auth.login.LoginException;
 import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 
-import net.dv8tion.jda.api.AccountType;
-import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.requests.GatewayIntent;
+import us.rpark.commands.admin.shutdownCommand;
 import us.rpark.commands.admin.testCommand;
 import us.rpark.commands.music.clearCommand;
 import us.rpark.commands.music.disconnectCommand;
@@ -25,15 +25,12 @@ import us.rpark.commands.music.skipCommand;
 import us.rpark.commands.music.stopCommand;
 import us.rpark.commands.music.volumeCommand;
 import us.rpark.commands.utility.helpCommand;
-import us.rpark.commands.utility.infoCommand;
 import us.rpark.commands.utility.pingCommand;
 import us.rpark.config.Config;
 
 public class Bot {
     private Bot() throws LoginException, IOException {
         Config config = new Config(new File("./config.json"));
-
-        final JDA jda = new JDABuilder(AccountType.BOT).setToken(config.getString("token")).build();
 
         CommandClientBuilder builder = new CommandClientBuilder();
         builder.setPrefix(config.getString("prefix"));
@@ -57,9 +54,11 @@ public class Bot {
         client.addCommand(new earrapeCommand());
         client.addCommand(new helpCommand());
         client.addCommand(new testCommand());
-        client.addCommand(new infoCommand());
+        client.addCommand(new shutdownCommand());
 
-        jda.addEventListener(client);
+        JDABuilder.createDefault(config.getString("token"), GatewayIntent.DIRECT_MESSAGES, GatewayIntent.GUILD_EMOJIS,
+                GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_VOICE_STATES, GatewayIntent.GUILD_PRESENCES).build().addEventListener(client);
+        
     }
 
     public static void main(String[] args) throws LoginException, IOException {

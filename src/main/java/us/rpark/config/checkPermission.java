@@ -39,4 +39,13 @@ public class checkPermission {
             return false;
         }
     }
+
+    public static boolean isBotOwner(CommandEvent event) {
+        // If the user has the same user ID as in botOwnerId return true, otherwise return false.
+        if (event.getAuthor().getId() == Config.getInstance().getString("botOwnerId")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

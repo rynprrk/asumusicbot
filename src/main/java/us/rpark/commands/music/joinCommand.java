@@ -19,6 +19,7 @@ public class joinCommand extends Command {
     }
 
     protected void execute(CommandEvent event) {
+        Command command = new joinCommand();
         AudioManager manager = event.getGuild().getAudioManager();
         VoiceChannel voiceChannel = event.getMember().getVoiceState().getChannel();
         Member selfMember = event.getSelfMember();
@@ -40,6 +41,7 @@ public class joinCommand extends Command {
 
         manager.openAudioConnection(voiceChannel);
         EmbedHandler.sendEmbedMessage(event, Color.GREEN, "Connected to voice!", "The bot has connected to your voice channel.");
+        EmbedHandler.sendLogMessage(event, command);
     }
 
 }

@@ -17,6 +17,7 @@ public class clearCommand extends Command {
     }
 
     protected void execute(CommandEvent event) {
+        Command command = new clearCommand();
         PlayerManager playerManager = PlayerManager.getInstance();
         GuildMusicManager manager = playerManager.getGuildMusicManager(event.getGuild());
 
@@ -37,7 +38,7 @@ public class clearCommand extends Command {
 
         manager.scheduler.getQueue().clear();
         EmbedHandler.sendEmbedMessage(event, Color.GREEN, "Cleared the queue!", "You have cleared the queue!");
-
+        EmbedHandler.sendLogMessage(event, command);
 
     }
 }

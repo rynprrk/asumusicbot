@@ -18,6 +18,7 @@ public class stopCommand extends Command {
     }
 
     protected void execute(CommandEvent event) {
+        Command command = new stopCommand();
         AudioManager manager = event.getGuild().getAudioManager();
         PlayerManager playerManager = PlayerManager.getInstance();
         GuildMusicManager musicManager = playerManager.getGuildMusicManager(event.getGuild());
@@ -42,6 +43,6 @@ public class stopCommand extends Command {
         musicManager.player.stopTrack();
         musicManager.player.setPaused(false);
         EmbedHandler.sendEmbedMessage(event, Color.GREEN, "Stopped the current song", "Stopped the song that is currently playing.");
-
+        EmbedHandler.sendLogMessage(event, command);
     }
 }

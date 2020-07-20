@@ -21,6 +21,7 @@ public class skipCommand extends Command {
     }
 
     protected void execute(CommandEvent event) {
+        Command command = new skipCommand();
         AudioManager manager = event.getGuild().getAudioManager();
         PlayerManager playerManager = PlayerManager.getInstance();
         GuildMusicManager musicManager = playerManager.getGuildMusicManager(event.getGuild());
@@ -40,5 +41,6 @@ public class skipCommand extends Command {
 
         scheduler.nextTrack();
         EmbedHandler.sendEmbedMessage(event, Color.GREEN, "Song Skipped!", "Skipped the current audio track!");
+        EmbedHandler.sendLogMessage(event, command);
     }
 }

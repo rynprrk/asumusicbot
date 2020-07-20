@@ -17,6 +17,7 @@ public class disconnectCommand extends Command {
     }
 
     protected void execute(CommandEvent event) {
+        Command command = new disconnectCommand();
         AudioManager manager = event.getGuild().getAudioManager();
         VoiceChannel voiceChannel = manager.getConnectedChannel();
 
@@ -32,5 +33,6 @@ public class disconnectCommand extends Command {
 
         manager.closeAudioConnection();
         EmbedHandler.sendEmbedMessage(event, Color.GREEN, "Disconnected from voice!", "I have disconnected from your voice channel.");
+        EmbedHandler.sendLogMessage(event, command);
     }
 }

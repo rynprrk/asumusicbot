@@ -19,6 +19,7 @@ public class volumeCommand extends Command {
     }
 
     protected void execute(CommandEvent event) {
+        Command command = new volumeCommand();
         PlayerManager playerManager = PlayerManager.getInstance();
         GuildMusicManager musicManager = playerManager.getGuildMusicManager(event.getGuild());
         AudioPlayer player = musicManager.player;
@@ -36,6 +37,6 @@ public class volumeCommand extends Command {
         Integer volume = Integer.parseInt(event.getArgs());
         playerManager.getGuildMusicManager(event.getGuild()).player.setVolume(volume);
         EmbedHandler.sendEmbedMessage(event, Color.GREEN, "Volume Changed", "Set the volume to **" + volume + "**");
-
+        EmbedHandler.sendLogMessage(event, command, event.getArgs());
     }
 }
